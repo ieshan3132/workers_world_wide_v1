@@ -15,6 +15,7 @@
         </div>
 
         <form action="#" class="form auth__form">
+          {% csrf_token %}
           <!-- Input:Text -->
           <div class="form__field">
             <label for="formInput#text">Full Name: </label>
