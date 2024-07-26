@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2%mo6pfevq@^cj$0djpa2(p^1=lvkbo3w#g91g!v8gnou+3h7a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://workers-world-wide-v1-1.onrender.com', 'https://workers-world-wide-v1-2.onrender.com']
+ALLOWED_HOSTS = ['https://www.workers-world-wide-v1-2.onrender.com', 'https://workers-world-wide-v1-2.onrender.com']
 
 
 # Application definition
@@ -148,15 +148,9 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 #}
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'workers_world_wide',
-        'USER': 'postgres',
-        'PASSWORD': 'Ieshan@3132',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    "default": dj_database_url.parse("postgresql://w3db_user:nIueol96XDbBPGvQQMd0B7RQZBINeuRP@dpg-cqhkl62ju9rs738mjftg-a.oregon-postgres.render.com/w3db")
 }
+
 
 
 # Password validation
