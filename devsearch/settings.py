@@ -149,9 +149,8 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 #}
 
 DATABASES = {
-    "default": dj_database_url.parse("postgresql://w3db_user:nIueol96XDbBPGvQQMd0B7RQZBINeuRP@dpg-cqhkl62ju9rs738mjftg-a.oregon-postgres.render.com/w3db")
+    "default": dj_database_url.parse("postgresql://workers_6vi9_user:uLZE7GiRBwyiZlyh30q9YbYtZrgYydN2@dpg-cqifup0gph6c738onlhg-a.oregon-postgres.render.com/workers_6vi9")
 }
-
 
 
 # Password validation
