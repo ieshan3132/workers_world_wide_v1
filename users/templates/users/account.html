@@ -10,7 +10,7 @@
           <div class="card text-center">
             <div class="card__body dev">
               <a class="tag tag--pill tag--main settings__btn" href="{% url 'edit_account' %}"><i class="zmdi zmdi-edit"></i> Edit</a>
-              <img class="avatar avatar--xl dev__avatar" src="{% url 'serve_profile_image' prof.id %}}" />
+              <img class="avatar avatar--xl dev__avatar" src="{% url 'serve_profile_image' profile.id %}}" />
               <h2 class="dev__name">{{ profile.name }}</h2>
               <p class="dev__title">{{ profile.short_intro }}</p>
               <p class="dev__location">Based in {{ profile.location }}</p>
