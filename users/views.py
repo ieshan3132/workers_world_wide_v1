@@ -140,11 +140,12 @@ def editAccount(request):
     if request.method == 'POST':
         form = profileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
+            image_url = profile_image_url(request, profile.profile_image)
             form.save()
 
             return redirect('account')
 
-    context = {'form': form}
+    context = {'form': form, 'image': image_url}
     return render(request, 'users/profile_form.html', context)
 
 @login_required(login_url='login')
