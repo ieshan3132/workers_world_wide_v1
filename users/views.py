@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import Profile, Skill, Message
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -9,6 +9,9 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CustomUserCreationForm, profileForm, skillForm, messageForm
 from .functions import searchProfiles, paginateProfiles
+from PIL import Image
+from io import BytesIO
+# Create your views here.
 # Create your views here.
 
 def profiles(request):
