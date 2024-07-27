@@ -23,6 +23,8 @@ class profileForm(ModelForm):
         model = Profile
         fields = ['name', 'email', 'username', 'location', 'bio', 'short_intro', 'profile_image', 'social_github', 'social_linkedin', 'social_twitter', 'social_youtube', 'social_website']
 
+    profile_image = forms.FileField()
+    
     def __init__(self, *args, **kwargs):
         super(profileForm, self).__init__(*args, **kwargs)
 
