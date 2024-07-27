@@ -20,4 +20,6 @@ urlpatterns = [
     path('inbox/', views.inbox, name='inbox'),
     path('message/<str:pk>/', views.viewMessage, name='message'),
     path('create-message/<str:pk>/', views.createMessage, name='create_message'),
+
+    path('profile_image/<str:pk>/', views.serve_profile_image, name='serve_profile_image'),
 ]
