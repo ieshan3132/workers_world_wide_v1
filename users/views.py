@@ -84,6 +84,17 @@ def registerUser(request):
     context = {'page': page, 'form': form}
     return render(request, 'users/login_register.html', context)
 
+#@login_required(login_url='login')
+#def userAccount(request):
+
+#    profile = request.user.profile
+#    skills = profile.skill_set.all()
+#    projects = profile.project_set.all()
+
+#   context = {'profile': profile, 'skills': skills, 'projects': projects}
+#   return render(request, 'users/account.html', context)
+
+###############################################
 @login_required(login_url='login')
 def userAccount(request):
 
@@ -91,8 +102,32 @@ def userAccount(request):
     skills = profile.skill_set.all()
     projects = profile.project_set.all()
 
-    context = {'profile': profile, 'skills': skills, 'projects': projects}
+    #image = profile.profile_image
+    #img = Image.open(BytesIO(image))
+
+    image_url = profile_image_url(request, profile.profile_image)
+
+    context = {'profile': profile, 'skills': skills, 'projects': projects, 'image': image_url}
     return render(request, 'users/account.html', context)
+
+
+def profile_image_url(request, image_data):
+    # This function generates a URL to serve the image
+    # The URL should be pointing to a view that serves the image data
+    return request.build_absolute_uri(f'/profile_image/{request.user.id}/')
+
+
+def serve_profile_image(request, pk):
+    profile = get_object_or_404(Profile, id=pk)
+    image_data = profile.profile_image
+    if image_data:
+        response = HttpResponse(image_data, content_type='image/jpeg')
+        return response
+    else:
+        return HttpResponse(status=404)
+#####################################################
+
+
 
 @login_required(login_url='login')
 def editAccount(request):
