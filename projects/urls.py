@@ -8,5 +8,5 @@ urlpatterns = [
     path('update-project/<str:pk>/', views.updateProject, name='update_project'),
     path('delete-project/<str:pk>/', views.deleteProject, name='delete_project'),
 
-    path('profile_image/<str:pk>/', views.serve_profile_image, name='serve_profile_image'),
+    path('project_image/<str:pk>/', views.serve_project_image, name='serve_project_image'),
 ]
