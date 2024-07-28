@@ -7,4 +7,6 @@ urlpatterns = [
     path('create-project/', views.createProject, name='create_project'),
     path('update-project/<str:pk>/', views.updateProject, name='update_project'),
     path('delete-project/<str:pk>/', views.deleteProject, name='delete_project'),
+
+    path('profile_image/<str:pk>/', views.serve_profile_image, name='serve_profile_image'),
 ]
