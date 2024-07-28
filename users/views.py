@@ -140,6 +140,10 @@ def editAccount(request):
     if request.method == 'POST':
         form = profileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
+            file = request.FILES['profile_image']
+            profile_image = file.read()
+            profile.profile_image = profile_image
+            
             form.save()
 
             return redirect('account')
