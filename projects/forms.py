@@ -11,6 +11,8 @@ class ProjectForm(ModelForm):
             'tags': forms.CheckboxSelectMultiple()
         }
 
+    featured_image = forms.FileField()
+    
     # To Assign a class to the field so that it can be edit using CSS.
     # Here we assigned the class as input.
     def __init__(self, *args, **kwargs):
