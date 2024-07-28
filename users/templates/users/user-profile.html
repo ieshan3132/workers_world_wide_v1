@@ -95,7 +95,7 @@
               <div class="column">
                 <div class="card project">
                   <a href="{% url 'single_project' proj.id %}" class="project">
-                    <img class="project__thumbnail" src="{{ proj.imageURL }}" alt="project thumbnail" />
+                    <img class="project__thumbnail" src="{% url 'serve_project_image' proj.id %}" alt="project thumbnail" />
                     <div class="card__body">
                       <h3 class="project__title">{{ proj.title }}</h3>
                       <p><a class="project__author" href="{% url 'user_profile' proj.owner.id %}">By {{ proj.owner.name }}</a></p>
