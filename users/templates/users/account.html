@@ -91,7 +91,7 @@
             {% for proj in projects %}
             <tr>
               <td class="settings__thumbnail">
-                <a href="{% url 'single_project' proj.id %}"><img src="{{ proj.imageURL }}" alt="Project Thumbnail" /></a>
+                <a href="{% url 'single_project' proj.id %}"><img src="{% url 'serve_project_image' proj.id %}" alt="Project Thumbnail" /></a>
               </td>
               <td class="settings__tableInfo">
                 <a href="{% url 'single_project' proj.id %}">{{ proj.title }}</a>
