@@ -18,12 +18,15 @@ def projects(request):
 
     custom_range, projects = paginateProjects(request, projects, 6)
 
+    #project = Project.objects.get()
+    #project = get_object_or_404(Project, id=request.user.id)
+
     image_url = project_image_url(request, projects)
 
     context = {'projects': projects, 'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'projects/projects.html', context)
 
-############################################
+
 def project_image_url(request, image_data):
     # This function generates a URL to serve the image
     # The URL should be pointing to a view that serves the image data
@@ -39,7 +42,6 @@ def serve_project_image(request, pk):
         return response
     else:
         return HttpResponse(status=404)
-#################################################
 
 
 def singleProject(request, pk):
@@ -72,6 +74,7 @@ def createProject(request):
         newtags = request.POST.get('newTags').replace(',', " ").split()
         form = ProjectForm(request.POST, request.FILES)
         if form.is_valid():
+
             file = request.FILES['featured_image']
             project_image = file.read()
 
