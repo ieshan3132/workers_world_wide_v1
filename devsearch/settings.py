@@ -149,7 +149,7 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 #}
 
 DATABASES = {
-    "default": dj_database_url.parse("postgresql://workers_6vi9_user:uLZE7GiRBwyiZlyh30q9YbYtZrgYydN2@dpg-cqifup0gph6c738onlhg-a.oregon-postgres.render.com/workers_6vi9")
+    "default": dj_database_url.parse("postgresql://workers_pxpo_user:jLdNSR0ZDIkGbIBvjklkDVoKaOj1H7Me@dpg-cr6trb5ds78s73c4rgn0-a.oregon-postgres.render.com/workers_pxpo")
 }
 
 
