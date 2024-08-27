@@ -11,7 +11,7 @@ from .forms import CustomUserCreationForm, profileForm, skillForm, messageForm
 from .functions import searchProfiles, paginateProfiles
 from PIL import Image
 from io import BytesIO
-# Create your views here.
+import static
 # Create your views here.
 
 def profiles(request):
@@ -70,7 +70,7 @@ def registerUser(request):
     form = CustomUserCreationForm()
 
     if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST,  request.FILES)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
@@ -87,17 +87,7 @@ def registerUser(request):
     context = {'page': page, 'form': form}
     return render(request, 'users/login_register.html', context)
 
-#@login_required(login_url='login')
-#def userAccount(request):
 
-#    profile = request.user.profile
-#    skills = profile.skill_set.all()
-#    projects = profile.project_set.all()
-
-#   context = {'profile': profile, 'skills': skills, 'projects': projects}
-#   return render(request, 'users/account.html', context)
-
-###############################################
 @login_required(login_url='login')
 def userAccount(request):
 
@@ -128,8 +118,6 @@ def serve_profile_image(request, pk):
         return response
     else:
         return HttpResponse(status=404)
-#####################################################
-
 
 
 @login_required(login_url='login')
@@ -139,15 +127,33 @@ def editAccount(request):
 
     if request.method == 'POST':
         form = profileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            file = request.FILES['profile_image']
-            profile_image = file.read()
-            profile.profile_image = profile_image
-            
-            form.save()
 
-            return redirect('account')
+        if request.FILES:
 
+            if form.is_valid():
+                file = request.FILES['profile_image']
+                profile_image = file.read()
+                profile.profile_image = profile_image
+
+                form.save()
+
+                return redirect('account')
+
+        else:
+
+            if form.is_valid():
+                #file = static.images.profiles.user-default.png
+                #profile_image = file.read()
+                #profile.profile_image = profile_image
+
+                existing_img = get_object_or_404(Profile, user='ieshan')
+                profile.profile_image = existing_img.profile_image
+                form.save()
+
+                return redirect('account')
+
+
+    image_url = profile_image_url(request, profile.profile_image)
     context = {'form': form}
     return render(request, 'users/profile_form.html', context)
 
