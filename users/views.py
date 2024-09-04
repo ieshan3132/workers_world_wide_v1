@@ -139,19 +139,6 @@ def editAccount(request):
 
                 return redirect('account')
 
-        else:
-
-            if form.is_valid():
-                #file = static.images.profiles.user-default.png
-                #profile_image = file.read()
-                #profile.profile_image = profile_image
-
-                existing_img = get_object_or_404(Profile, user='ieshan')
-                profile.profile_image = existing_img.profile_image
-                form.save()
-
-                return redirect('account')
-
 
     image_url = profile_image_url(request, profile.profile_image)
     context = {'form': form}
