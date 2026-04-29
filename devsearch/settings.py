@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-2%mo6pfevq@^cj$0djpa2(p^1=lvkbo3w#g91g!v8gnou+3h7a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.workers-world-wide-v1-2.onrender.com', 'workers-world-wide-v1-2.onrender.com']
+ALLOWED_HOSTS = ['www.workers-world-wide-v1-2.onrender.com', 'workers-world-wide-v1-2.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'worker_world_wide_v1',
 ]
 
 ################# USING JASON WEB TOKENS #################
@@ -148,8 +149,17 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 #    }
 #}
 
+#DATABASES = {
+#    "default": dj_database_url.parse("postgresql://w3db_zx7c_user:j0V6rYf8x13vy74vXWJhwdiotEE8gqVB@dpg-csh8istumphs73c2fahg-a.oregon-postgres.render.com/w3db_zx7c")
+#}
+
 DATABASES = {
-    "default": dj_database_url.parse("postgresql://w3db_zx7c_user:j0V6rYf8x13vy74vXWJhwdiotEE8gqVB@dpg-csh8istumphs73c2fahg-a.oregon-postgres.render.com/w3db_zx7c")
+    'default': dj_database_url.config(
+        # Paste your full Neon connection string here as a string
+        default='postgresql://neondb_owner:npg_Q3gSNxX1wlfe@ep-lucky-fog-an6ns7qk-pooler.c-6.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
+        conn_max_age=600,
+        conn_health_checks=True,  # Vital for Neon's "Scale to Zero" feature [cite: 84]
+    )
 }
 
 
