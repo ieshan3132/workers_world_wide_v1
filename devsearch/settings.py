@@ -14,6 +14,9 @@ from pathlib import Path
 import os
 from datetime import timedelta
 import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -155,10 +158,9 @@ WSGI_APPLICATION = 'devsearch.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        # Paste your full Neon connection string here as a string
-        default='postgresql://neondb_owner:npg_Q3gSNxX1wlfe@ep-lucky-fog-an6ns7qk-pooler.c-6.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
+        default=os.environ.get('DATABASE_URL'),
         conn_max_age=600,
-        conn_health_checks=True,  # Vital for Neon's "Scale to Zero" feature [cite: 84]
+        conn_health_checks=True,
     )
 }
 
